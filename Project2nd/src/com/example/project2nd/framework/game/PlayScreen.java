@@ -1,5 +1,6 @@
 package com.example.project2nd.framework.game;
 
+import java.net.Socket;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -25,29 +26,14 @@ public class PlayScreen extends Screen {
 	GameState state = GameState.Ready;
 	private int select = 0;
 	private World world;
-	private Animal animal;
+	private Otaku otaku;
 	private LinkedList sprites;
 	private int score = 0;
 
-	public PlayScreen(Game game, int _select) {
+	public PlayScreen(Game game) {
 		super(game);
-		select = _select;
-		int speed = 0;
-		switch (select) {
-		case 1: // カピパラ選択時
-			speed = 4;
-			animal = new Animal(190, 630, Assets.animal);
-			break;
-		case 2: // ライオン選択時
-			speed = 7;
-			animal = new Animal(190, 630, Assets.animal);
-			break;
-		case 3: // ダチョウ選択時
-			speed = 10;
-			animal = new Animal(190, 630, Assets.animal);
-			break;
-		}
-		world = new World(speed, _select);
+		world = new World();
+		otaku = new Otaku(215, 660);
 	}
 
 	@Override
@@ -81,19 +67,23 @@ public class PlayScreen extends Screen {
 		for (int i = 0; i < len; i++) {
 			TouchEvent event = touchEvents.get(i);
 			switch (event.type) {
+			case MotionEvent.ACTION_MOVE:
 			case MotionEvent.ACTION_DOWN:
-				if (isBounds(event, 0, 0, 160, 800)) {
-					animal.setRequest(1);
+				if (isBounds(event, 10, 730, 200, 60)) {
+					// （RIGHT処理）
+					otaku.accelerateLeft();
 				}
-				if (isBounds(event, 161, 0, 160, 800)) {
-					animal.setRequest(2);
+				if (isBounds(event, 270, 730, 200, 60)) {
+					// （LEFT処理）
+					otaku.accelerateRight();
 				}
-				if (isBounds(event, 321, 0, 160, 800)) {
-					animal.setRequest(3);
-				}
+				break;
+			case MotionEvent.ACTION_UP:
+				otaku.Cancel();
+				break;
 			}
 		}
-		animal.Update(deltaTime);
+		otaku.Update(deltaTime);
 		world.update(deltaTime);
 	}
 
@@ -104,7 +94,7 @@ public class PlayScreen extends Screen {
 			TouchEvent event = touchEvents.get(i);
 			switch (event.type) {
 			case MotionEvent.ACTION_DOWN:
-				game.setScreen(new ScoreScreen(game, world));
+				// game.setScreen(new ScoreScreen(game, world));
 				break;
 			}
 		}
@@ -123,71 +113,62 @@ public class PlayScreen extends Screen {
 	private void drawReadyUI() {
 		// ゲーム準備時のUI(描画系)
 		Graphics g = game.getGraphics();
-		world.draw(g);
+		// world.draw(g);
 		Paint paint = new Paint();
 		paint.setColor(Color.RED);
 		paint.setTextSize(100);
+		g.drawRect(0, 0, 481, 800, Color.BLACK);
 		g.drawTextAlp("Ready?", 70, 300, paint);
 	}
 
 	private void drawRunningUI() {
 		// ゲーム中のUI(描画系)
 		Graphics g = game.getGraphics();
-		world.draw(g);
-		animal.draw(g);
+		g.drawRect(0, 0, 481, 725, Color.WHITE);
 		LinkedList sprites = world.getSprites();
 		Iterator iterator = sprites.iterator(); // Iterator=コレクション内の要素を順番に取り出す方法
 		while (iterator.hasNext()) { // iteratorの中で次の要素がある限りtrue
 			Sprite sprite = (Sprite) iterator.next();
 			sprite.Update();
+			if (sprite.getY() > 725) {
+				sprites.remove(sprite);
+				break;
+			}
+			if (otaku.isCollision(sprite)) { // 衝突した場合
+				if (sprite instanceof Doujinshi && !otaku.getflag())
+					score += 30;
+				if(sprite instanceof Figure && !otaku.getflag())
+					score += 50;
+				if(sprite instanceof Tapestry && !otaku.getflag())
+					score += 70;
+				if(sprite instanceof Bl && !otaku.getflag())
+					otaku.setFlag();
+				sprites.remove(sprite);
+				break;
+			}
 			sprite.draw(g);
-			if (animal.isCollision(sprite)) { // 衝突した場合
-				if (sprite instanceof Esa) { // それがエサの場合
-					Esa esa = (Esa) sprite;
-					if (esa.getFlag()) {
-						esa.Use(animal); // エサの効果発動！
-						sprites.remove(esa);
-					} else if (!animal.getflag())
-						state = GameState.GameOver; // エサが偽物且つ動物が無敵状態じゃないときゲームオーバー
-					else
-						esa.crash();
-					break;
-				} else if (!animal.getflag())
-					state = GameState.GameOver; // エサ以外に衝突且つ動物が無敵状態じゃない場合ゲームオーバー
-				Sprite _sprite = (Sprite) sprite;
-				_sprite.crash();
-				break;
-			}
-			
-			if (Judg_remove(sprite)) {
-				Sprite _sprite = (Sprite) sprite;
-				sprites.remove(_sprite);
-				break;
-			}
 		}
+
+		otaku.draw(g);
+		world.draw(g);
 		Paint paint = new Paint();
 		paint.setColor(Color.RED);
 		paint.setTextSize(50);
-		score = world.getScore();
-		int i;
-		for (i = 0; score > 9; i++) {
-			if (score / 10 < 10)
-				break;
-			else {
-				i++;
-				score /= 10;
-			}
-		}
-		g.drawTextAlp("SCORE : " + world.getScore(), 200 - i * 15, 50, paint);
-	}
-
-	private boolean Judg_remove(Sprite sprite) {
-		if (sprite.getX() < 0 - sprite.getWidth() || sprite.getX() > 480
-				|| sprite.getY() < 0 - sprite.getHeight()
-				|| sprite.getY() > 810)
-			return true;
-		else
-			return false;
+		// int i;
+		// for (i = 0; score > 9; i++) {
+		// if (score / 10 < 10)
+		// break;
+		// else {
+		// i++;
+		// score /= 10;
+		// }
+		// }
+		// g.drawTextAlp("SCORE : " + score, 200 - i * 15, 50, paint);
+		g.drawTextAlp("SCORE : " + score, 170, 50, paint);
+		g.drawRect(0, 725, 481, 800, Color.WHITE);
+		g.drawLine(0, 725, 480, 725, Color.BLACK, 2);
+		g.drawPixmap(Assets.bt_left, 10, 730);
+		g.drawPixmap(Assets.bt_right, 270, 730);
 	}
 
 	private void drawGameOverUI() {

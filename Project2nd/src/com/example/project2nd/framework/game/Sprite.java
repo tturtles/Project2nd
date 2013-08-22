@@ -13,14 +13,10 @@ public abstract class Sprite {
 	protected int width;
 	protected int height;
 	protected Pixmap image;
-	protected boolean flag_crash = false;
 	protected int speedX;
 	protected int speedY;
 
-	public Sprite(double x, double y, Pixmap pixmap) {
-		this.x = x;
-		this.y = y;
-		image = pixmap;
+	public Sprite() {
 	}
 
 	public abstract void Update();
@@ -59,13 +55,4 @@ public abstract class Sprite {
 	public int getHeight() {
 		return height;
 	}
-	
-	public void crash() {
-		Random rand = new Random();
-		int ran = rand.nextInt(2);
-		if(ran==0) this.speedX = 10;
-		else this.speedX = -10;
-		this.speedY = -30;
-	}
-
 }

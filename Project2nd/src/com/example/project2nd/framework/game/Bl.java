@@ -1,11 +1,12 @@
 package com.example.project2nd.framework.game;
 
+import java.util.Random;
+
 import com.example.project2nd.framework.Graphics;
 import com.example.project2nd.framework.Pixmap;
 
-public class Car extends Sprite {
+public class Bl extends Sprite {
 
-	private World world;
 	private int vy;
 	private int vx;
 
@@ -13,14 +14,14 @@ public class Car extends Sprite {
 	private static float tick = TICK_INITIAL; // 更新速度
 	private float tickTime;
 
-	public Car(double _x, double _y, int speed, Pixmap pixmap) {
-		super(_x, _y, pixmap);
-		x = _x;
-		y = _y;
-		this.world = world;
-		speedY = speed;
-		width = 100;
-		height = 150;
+	public Bl() {
+		this.image = Assets.image_bl;
+		width = 50;
+		height = 50;
+		Random rand = new Random();
+		this.x = rand.nextInt(480-width);
+		this.y = -height;
+		speedY = 7;
 	}
 
 	public void Update() {
@@ -30,9 +31,6 @@ public class Car extends Sprite {
 		x += vx;
 	}
 
-	public void draw(Graphics g, float deltaTime) {
-		g.drawPixmap(Assets.animal, (int) x, (int) y);
-	}
 
 	/*
 	 * 以下getter,setter群

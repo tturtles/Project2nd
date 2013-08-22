@@ -92,6 +92,12 @@ public class AndroidGraphics implements Graphics {
 		paint.setColor(color);
 		canvas.drawLine(x, y, x2, y2, paint);
 	}
+	
+	public void drawLine(int x, int y, int x2, int y2, int color, int width) {
+		paint.setColor(color);
+		paint.setStrokeWidth(width);
+		canvas.drawLine(x, y, x2, y2, paint);
+	}
 
 	public void drawRect(int x, int y, int width, int height, int color) {
 		paint.setColor(color);

@@ -14,27 +14,20 @@ public class LoadingScreen extends Screen {
 	@Override
 	public void update(float deltaTime) {
 		Graphics g = game.getGraphics();
-		Assets.title = g.newPixmap("title.png", PixmapFormat.ARGB4444);
+//		Assets.title = g.newPixmap("title.png", PixmapFormat.ARGB4444);
 		Assets.bt_start = g.newPixmap("bt_start.png", PixmapFormat.ARGB4444);
 		Assets.bt_score = g.newPixmap("bt_score.png", PixmapFormat.ARGB4444);
 		Assets.bt_close = g.newPixmap("bt_close.png", PixmapFormat.ARGB4444);
-		Assets.bt_kapipara = g.newPixmap("bt_kapipara.png", PixmapFormat.ARGB4444);
-		Assets.bt_lion = g.newPixmap("bt_lion.png", PixmapFormat.ARGB4444);
-		Assets.bt_datyou = g.newPixmap("bt_datyou.png", PixmapFormat.ARGB4444);
-		Assets.animal = g.newPixmap("animal.png", PixmapFormat.ARGB4444);
-		Assets.car = g.newPixmap("car.png", PixmapFormat.ARGB4444);
-		Assets.truk = g.newPixmap("trukbule.png", PixmapFormat.ARGB4444);
-		Assets.way0 = g.newPixmap("way0.png", PixmapFormat.ARGB4444);
-		Assets.way1 = g.newPixmap("way1.png", PixmapFormat.ARGB4444);
-		Assets.esa1_true = g.newPixmap("esa1_true.png", PixmapFormat.ARGB4444);
-		Assets.esa1_false = g.newPixmap("esa1_false.png", PixmapFormat.ARGB4444);
-		Assets.esa2_true = g.newPixmap("esa2_true.png", PixmapFormat.ARGB4444);
-		Assets.esa2_false = g.newPixmap("esa2_false.png", PixmapFormat.ARGB4444);
-		Assets.animal_sp = g.newPixmap("animal_sp.png", PixmapFormat.ARGB4444);
-		Assets.bt_back = g.newPixmap("back.png", PixmapFormat.ARGB4444);
 		Assets.bt_retry = g.newPixmap("bt_retry.png", PixmapFormat.ARGB4444);
 		Assets.bt_title = g.newPixmap("bt_title.png", PixmapFormat.ARGB4444);
-		Assets.buck_StartScreen = g.newPixmap("StartScreenImage.png", PixmapFormat.ARGB4444);
+		Assets.bt_left = g.newPixmap("bt_left.png", PixmapFormat.ARGB4444);
+		Assets.bt_right = g.newPixmap("bt_right.png", PixmapFormat.ARGB4444);
+		Assets.image_otaku = g.newPixmap("image_otaku.png", PixmapFormat.ARGB4444);
+		Assets.image_nototaku = g.newPixmap("image_nototaku.png", PixmapFormat.ARGB4444);
+		Assets.image_doujinshi = g.newPixmap("image_doujinshi.png", PixmapFormat.ARGB4444);
+		Assets.image_figure = g.newPixmap("image_figure.png", PixmapFormat.ARGB4444);
+		Assets.image_tapestry = g.newPixmap("image_tapestry.png", PixmapFormat.ARGB4444);
+		Assets.image_bl = g.newPixmap("image_bl.png", PixmapFormat.ARGB4444);
 		game.setScreen(new StartScreen(game));
 	}
 
