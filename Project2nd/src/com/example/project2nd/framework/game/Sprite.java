@@ -15,6 +15,7 @@ public abstract class Sprite {
 	protected Pixmap image;
 	protected int speedX;
 	protected int speedY;
+	protected boolean flag_update = false;
 
 	public Sprite() {
 	}
@@ -55,4 +56,10 @@ public abstract class Sprite {
 	public int getHeight() {
 		return height;
 	}
+
+	public void setFlag_update(boolean flag_update) {
+		this.flag_update = flag_update;
+	}
+	
+
 }

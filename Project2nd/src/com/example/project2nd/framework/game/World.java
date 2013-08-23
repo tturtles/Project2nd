@@ -21,13 +21,11 @@ public class World {
 	private static float tick = TICK_INITIAL; // 更新速度
 	private float tickTime;
 	private LinkedList sprites;
-	private ArrayList bucks = new ArrayList();
-	private int score = 0;
-
 	private ArrayList list;
 	private int list_count = 0;
-	private int item_sun = 30;
-	private int item_kind = 3;
+	private int item_sun = 40;
+	private int item_kind = 4;
+	private boolean flag = false;
 
 	public World() {
 		sprites = new LinkedList();
@@ -37,13 +35,14 @@ public class World {
 
 	public void load() {
 		list = new ArrayList();
-		for (int i = 0; i < item_sun/item_kind; i++) {
+		for (int i = 0; i < item_sun / item_kind; i++) {
 			list.add(new Doujinshi());
 			list.add(new Figure());
 			list.add(new Tapestry());
 			list.add(new Bl());
 		}
 		Collections.shuffle(list);
+		sprites.add(list.get(list_count++));
 	}
 
 	public void update(float deltaTime) {
@@ -53,6 +52,8 @@ public class World {
 			if (list_count < item_sun) {
 				sprites.add(list.get(list_count));
 				list_count++;
+			} else {
+				flag = true;
 			}
 		}
 	}
@@ -68,12 +69,20 @@ public class World {
 		g.drawTextAlp("count : " + list_count, 0, 30, paint); // 試験的
 	}
 
+	public int getItem_sun() {
+		return item_sun;
+	}
+
+	public int getList_count() {
+		return list_count;
+	}
+
 	public LinkedList getSprites() {
 		return sprites;
 	}
 
-	public int getScore() {
-		return score;
+	public boolean isFlag() {
+		return flag;
 	}
 
 }

@@ -1,16 +1,12 @@
 package com.example.project2nd.framework.game;
 
-import java.net.Socket;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
-import android.R.anim;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.util.Log;
 import android.view.MotionEvent;
-import android.widget.Toast;
 
 import com.example.project2nd.framework.Game;
 import com.example.project2nd.framework.Graphics;
@@ -22,12 +18,10 @@ public class PlayScreen extends Screen {
 	enum GameState {
 		Ready, Running, Paused, GameOver
 	}
-
 	GameState state = GameState.Ready;
-	private int select = 0;
+	
 	private World world;
 	private Otaku otaku;
-	private LinkedList sprites;
 	private int score = 0;
 
 	public PlayScreen(Game game) {
@@ -94,7 +88,7 @@ public class PlayScreen extends Screen {
 			TouchEvent event = touchEvents.get(i);
 			switch (event.type) {
 			case MotionEvent.ACTION_DOWN:
-				// game.setScreen(new ScoreScreen(game, world));
+				game.setScreen(new ScoreScreen(game, score));
 				break;
 			}
 		}
@@ -113,12 +107,13 @@ public class PlayScreen extends Screen {
 	private void drawReadyUI() {
 		// ゲーム準備時のUI(描画系)
 		Graphics g = game.getGraphics();
-		// world.draw(g);
 		Paint paint = new Paint();
 		paint.setColor(Color.RED);
 		paint.setTextSize(100);
 		g.drawRect(0, 0, 481, 800, Color.BLACK);
 		g.drawTextAlp("Ready?", 70, 300, paint);
+		paint.setTextSize(30);
+		g.drawTextAlp("Tap on Start", 150, 500, paint);
 	}
 
 	private void drawRunningUI() {
@@ -127,6 +122,8 @@ public class PlayScreen extends Screen {
 		g.drawRect(0, 0, 481, 725, Color.WHITE);
 		LinkedList sprites = world.getSprites();
 		Iterator iterator = sprites.iterator(); // Iterator=コレクション内の要素を順番に取り出す方法
+		if (world.isFlag() && sprites.size() == 0)
+			state = GameState.GameOver; // 終了判定
 		while (iterator.hasNext()) { // iteratorの中で次の要素がある限りtrue
 			Sprite sprite = (Sprite) iterator.next();
 			sprite.Update();
@@ -137,34 +134,33 @@ public class PlayScreen extends Screen {
 			if (otaku.isCollision(sprite)) { // 衝突した場合
 				if (sprite instanceof Doujinshi && !otaku.getflag())
 					score += 30;
-				if(sprite instanceof Figure && !otaku.getflag())
+				if (sprite instanceof Figure && !otaku.getflag())
 					score += 50;
-				if(sprite instanceof Tapestry && !otaku.getflag())
+				if (sprite instanceof Tapestry && !otaku.getflag())
 					score += 70;
-				if(sprite instanceof Bl && !otaku.getflag())
+				if (sprite instanceof Bl && !otaku.getflag())
 					otaku.setFlag();
 				sprites.remove(sprite);
 				break;
 			}
 			sprite.draw(g);
 		}
-
 		otaku.draw(g);
 		world.draw(g);
 		Paint paint = new Paint();
 		paint.setColor(Color.RED);
 		paint.setTextSize(50);
-		// int i;
-		// for (i = 0; score > 9; i++) {
-		// if (score / 10 < 10)
-		// break;
-		// else {
-		// i++;
-		// score /= 10;
-		// }
-		// }
-		// g.drawTextAlp("SCORE : " + score, 200 - i * 15, 50, paint);
-		g.drawTextAlp("SCORE : " + score, 170, 50, paint);
+		int _score = score;
+		int i;
+		for (i = 0; _score > 9; i++) {
+			if (_score / 10 < 10)
+				break;
+			else {
+				i++;
+				_score /= 10;
+			}
+		}
+		g.drawTextAlp("SCORE : " + score, 200 - i * 15, 50, paint);
 		g.drawRect(0, 725, 481, 800, Color.WHITE);
 		g.drawLine(0, 725, 480, 725, Color.BLACK, 2);
 		g.drawPixmap(Assets.bt_left, 10, 730);

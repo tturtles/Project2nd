@@ -14,14 +14,14 @@ public class Tapestry extends Sprite {
 	private static float tick = TICK_INITIAL; // 更新速度
 	private float tickTime;
 	private int farst_x = 0;
-	private int move_x = 150;	//左右に移動する限界値
+	private int move_x = 150; // 左右に移動する限界値
 
 	public Tapestry() {
 		image = Assets.image_tapestry;
 		width = 50;
 		height = 50;
 		Random rand = new Random();
-		this.x = farst_x = rand.nextInt(480-width);
+		this.x = farst_x = rand.nextInt(480 - width);
 		this.y = -height;
 		speedY = 3;
 		speedX = 3;
@@ -30,12 +30,13 @@ public class Tapestry extends Sprite {
 	}
 
 	public void Update() {
-		if(x-farst_x>move_x || x+width>480) vx = -speedX;
-		else if(farst_x-x>move_x || x<0) vx = speedX;
-		y += vy;
-		x += vx;
+			if (x - farst_x > move_x || x + width > 480)
+				vx = -speedX;
+			else if (farst_x - x > move_x || x < 0)
+				vx = speedX;
+			y += vy;
+			x += vx;
 	}
-
 
 	/*
 	 * 以下getter,setter群
