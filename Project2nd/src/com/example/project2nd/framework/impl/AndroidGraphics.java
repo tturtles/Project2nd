@@ -6,22 +6,30 @@ import java.io.InputStream;
 import com.example.project2nd.framework.Graphics;
 import com.example.project2nd.framework.Pixmap;
 
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
 import android.graphics.BitmapFactory.Options;
-import android.graphics.Color;
 import android.graphics.Paint.Style;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.Rect;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
+import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 
-
-public class AndroidGraphics implements Graphics {
+public class AndroidGraphics extends Activity implements Graphics {
 	AssetManager assets;
 	Bitmap frameBuffer;
 	Canvas canvas;
@@ -92,7 +100,7 @@ public class AndroidGraphics implements Graphics {
 		paint.setColor(color);
 		canvas.drawLine(x, y, x2, y2, paint);
 	}
-	
+
 	public void drawLine(int x, int y, int x2, int y2, int color, int width) {
 		paint.setColor(color);
 		paint.setStrokeWidth(width);
@@ -134,28 +142,29 @@ public class AndroidGraphics implements Graphics {
 	}
 
 	@Override
-	public void drawController(int cx, int cy, int cr, Paint circle_paint,	int color, int color2, int direction) {
+	public void drawController(int cx, int cy, int cr, Paint circle_paint,
+			int color, int color2, int direction) {
 		int cw = 70;
 		canvas.drawCircle(cx, cy, cr, circle_paint);
 		switch (direction) {
 		case 1:
 			Arrow(cx + cr, cy, cx + cr - cw, cy - cw / 2, cx + cr - cw, cy + cw
 					/ 2, color2); // right
-			Arrow(cx - cr, cy, cx - cr + cw, cy - cw / 2, cx - cr + cw,
-					cy + cw / 2, color); // left
+			Arrow(cx - cr, cy, cx - cr + cw, cy - cw / 2, cx - cr + cw, cy + cw
+					/ 2, color); // left
 			break;
-			
+
 		case 2:
-			Arrow(cx - cr, cy, cx - cr + cw, cy - cw / 2, cx - cr + cw,
-					cy + cw / 2, color2); // left
+			Arrow(cx - cr, cy, cx - cr + cw, cy - cw / 2, cx - cr + cw, cy + cw
+					/ 2, color2); // left
 			Arrow(cx + cr, cy, cx + cr - cw, cy - cw / 2, cx + cr - cw, cy + cw
 					/ 2, color); // right
 			break;
 		default:
 			Arrow(cx + cr, cy, cx + cr - cw, cy - cw / 2, cx + cr - cw, cy + cw
 					/ 2, color); // right
-			Arrow(cx - cr, cy, cx - cr + cw, cy - cw / 2, cx - cr + cw,
-					cy + cw / 2, color); // left
+			Arrow(cx - cr, cy, cx - cr + cw, cy - cw / 2, cx - cr + cw, cy + cw
+					/ 2, color); // left
 			break;
 		}
 		paint.setColor(color);
@@ -171,8 +180,15 @@ public class AndroidGraphics implements Graphics {
 		canvas.drawText(line, x, y, paint);
 	}
 
-	void Arrow(float x1, float y1, float x2, float y2, float x3, float y3,
-			int color) {
+	public void drawTextAlp(String line, float x, float y, int color, float size) {
+		Paint paint = new Paint();
+		paint.setColor(color);
+		paint.setTextSize(size);
+		canvas.drawText(line, x, y, paint);
+	}
+
+	private void Arrow(float x1, float y1, float x2, float y2, float x3,
+			float y3, int color) {
 		Paint paint = new Paint();
 		paint.setColor(color);
 		Path path = new Path();
@@ -181,5 +197,5 @@ public class AndroidGraphics implements Graphics {
 		path.lineTo(x3, y3);
 		canvas.drawPath(path, paint);
 	}
-
+	
 }

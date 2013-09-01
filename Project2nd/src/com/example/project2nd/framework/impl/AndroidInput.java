@@ -11,9 +11,9 @@ import android.view.View;
 
 
 public class AndroidInput implements Input {
-	AccelerometerHandoler accelHandler;		//・ｽ・ｽ・ｽ・ｽ・ｽx・ｽZ・ｽ・ｽ・ｽT・ｽ[
-	KeyboardHandler keyHandler;				//・ｽL・ｽ[・ｽ{・ｽ[・ｽh
-	TouchHandler touchHandler;				//・ｽ^・ｽb・ｽ`
+	AccelerometerHandoler accelHandler;		
+	KeyboardHandler keyHandler;				
+	TouchHandler touchHandler;				
 	
 	public AndroidInput(Context context, View view, float scaleX, float scaleY) {
 		accelHandler = new AccelerometerHandoler(context);

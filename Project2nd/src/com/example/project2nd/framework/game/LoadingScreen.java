@@ -22,6 +22,7 @@ public class LoadingScreen extends Screen {
 		Assets.bt_title = g.newPixmap("bt_title.png", PixmapFormat.ARGB4444);
 		Assets.bt_left = g.newPixmap("bt_left.png", PixmapFormat.ARGB4444);
 		Assets.bt_right = g.newPixmap("bt_right.png", PixmapFormat.ARGB4444);
+		Assets.bt_touroku = g.newPixmap("bt_touroku.png", PixmapFormat.ARGB4444);
 		Assets.image_otaku = g.newPixmap("image_otaku.png", PixmapFormat.ARGB4444);
 		Assets.image_nototaku = g.newPixmap("image_nototaku.png", PixmapFormat.ARGB4444);
 		Assets.image_doujinshi = g.newPixmap("image_doujinshi.png", PixmapFormat.ARGB4444);

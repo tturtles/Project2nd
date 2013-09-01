@@ -1,7 +1,4 @@
 package com.example.project2nd.framework.impl;
-/*
- * ・ｽ・ｽ・ｽ・ｽ・ｽx・ｽZ・ｽ・ｽ・ｽT・ｽ[・ｽﾌ擾ｿｽ・ｽ・ｽ
- * */
 
 import android.content.Context;
 import android.hardware.Sensor;
@@ -16,14 +13,13 @@ public class AccelerometerHandoler implements SensorEventListener{
 	
 	public AccelerometerHandoler(Context context) {
 		SensorManager manager = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
-		if(manager.getSensorList(Sensor.TYPE_ACCELEROMETER).size() != 0) {		//・ｽZ・ｽ・ｽ・ｽT・ｽ[・ｽﾌ有・ｽ・ｽ・ｽﾌ確・ｽF
+		if(manager.getSensorList(Sensor.TYPE_ACCELEROMETER).size() != 0) {		
 			Sensor accelerometer = manager.getSensorList(Sensor.TYPE_ACCELEROMETER).get(0);
-			manager.registerListener(this, accelerometer, SensorManager.SENSOR_DELAY_GAME);		//・ｽo・ｽ^・ｽv・ｽ・ｽ・ｽZ・ｽX・ｽ・ｽ・ｽ・ｽ・ｽ・ｽ・ｽ・ｽ・ｽ・ｽ・ｽ・ｽ・ｽﾇゑｿｽ・ｽ・ｽ
+			manager.registerListener(this, accelerometer, SensorManager.SENSOR_DELAY_GAME);		
 		}
 	}
 	
 	public void onAccuracyChanged(Sensor sensor, int accuracy) {
-		//・ｽ・ｽ・ｽ・ｽ・ｽﾍ会ｿｽ・ｽ・ｽ・ｽ・ｽ・ｽﾈゑｿｽ
 	}
 
 	public void onSensorChanged(SensorEvent event) {

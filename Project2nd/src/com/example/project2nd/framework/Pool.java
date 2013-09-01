@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class Pool<T> {	//�W�F�l���b�N�^�@���@�ǂ̌^�̃I�u�W�F�N�g�ł��i�[�ł���@
+public class Pool<T> {	
 	
 	public interface PoolObjectFactory<T> {		//�C���^�[�t�F�C�X
 		public T createObject();

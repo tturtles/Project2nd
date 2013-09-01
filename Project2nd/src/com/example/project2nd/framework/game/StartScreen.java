@@ -30,6 +30,7 @@ public class StartScreen extends Screen {
 				if (isBounds(event, 80, 450, 320, 100)) {
 					game.setScreen(new PlayScreen(game));
 				} else if(isBounds(event, 80, 550, 320, 100)) {
+//					game.setScreen(new ScoreScreen(game, 100));
 //					game.setScreen(new ScoreRunkingScreen(game));
 				} else if(isBounds(event, 80, 650, 320, 100)) {
 					System.exit(0);
@@ -55,6 +56,7 @@ public class StartScreen extends Screen {
 		g.drawPixmap(Assets.bt_play, 80, 450);
 		g.drawPixmap(Assets.bt_score, 80, 550);
 		g.drawPixmap(Assets.bt_close, 80, 650);
+		game.chengeEditText(false);
 	}
 
 	@Override

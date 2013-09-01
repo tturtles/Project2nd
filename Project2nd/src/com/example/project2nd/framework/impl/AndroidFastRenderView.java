@@ -1,12 +1,12 @@
 package com.example.project2nd.framework.impl;
 
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Rect;
-import android.util.AttributeSet;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.widget.EditText;
+import android.widget.FrameLayout;
 
 public class AndroidFastRenderView extends SurfaceView implements Runnable {
 	AndroidGame game;
@@ -31,7 +31,7 @@ public class AndroidFastRenderView extends SurfaceView implements Runnable {
 	public void run() {
 		Rect dstRect = new Rect();
 		long startTime = System.nanoTime();
-		while(running) {
+		while(running) { 
 			if(!holder.getSurface().isValid())
 				continue;
 			
@@ -56,7 +56,6 @@ public class AndroidFastRenderView extends SurfaceView implements Runnable {
 				renderThread.join();
 				break;
 			}catch (InterruptedException e) {
-				//リトライ
 			}
 		}
 	}
