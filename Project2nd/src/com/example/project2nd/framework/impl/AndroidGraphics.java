@@ -186,7 +186,14 @@ public class AndroidGraphics extends Activity implements Graphics {
 		paint.setTextSize(size);
 		canvas.drawText(line, x, y, paint);
 	}
-
+	
+	public void drawTextAlp(String line,int start, int end, float x, float y, int color, float size) {
+		Paint paint = new Paint();
+		paint.setColor(color);
+		paint.setTextSize(size);
+		canvas.drawText(line, start, end, x, y, paint);
+	}
+	
 	private void Arrow(float x1, float y1, float x2, float y2, float x3,
 			float y3, int color) {
 		Paint paint = new Paint();

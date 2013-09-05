@@ -3,7 +3,6 @@ package com.example.project2nd.framework.game;
 import java.util.List;
 
 import android.graphics.Color;
-import android.graphics.Paint;
 
 import com.example.project2nd.framework.Game;
 import com.example.project2nd.framework.Graphics;
@@ -53,13 +52,14 @@ public class ScoreScreen extends Screen {
 	@Override
 	public void present(float deltaTime) {
 		Graphics g = game.getGraphics();
-		g.drawRect(0, 0, 480, 800, Color.WHITE);
+		g.drawRect(0, 0, 481, 801, Color.WHITE);
 		g.drawTextAlp("スコア", 30, 100, Color.RED, 50);
 		g.drawTextAlp(""+this.score, 200, 200, Color.BLACK, 100);
 		g.drawPixmap(Assets.bt_retry, 20, 650);
 		g.drawPixmap(Assets.bt_title, 200, 650);
 		g.drawPixmap(Assets.bt_touroku, 140, 400);
 		g.drawTextAlp("name", 30, 250, Color.RED, 50);
+//		g.drawTextAlp("name", 0, 100, 30, 250, Color.RED, 50);
 		game.chengeEditText(true);
 	}
 

@@ -20,6 +20,7 @@ import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
 import android.text.InputType;
 import android.text.SpannableStringBuilder;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -39,7 +40,7 @@ public abstract class AndroidGame extends Activity implements Game {
 	Handler handler;
 	final int WIDTH = 300;
 	final int HEIGHT = 100;
-	final int ET_X = 100;
+	final int ET_X = 90;
 	final int ET_Y = 270;
 	final int ET_BUCKCOLOR = Color.GRAY;
 	final int ET_TEXTCOLOR = Color.WHITE;
@@ -70,13 +71,23 @@ public abstract class AndroidGame extends Activity implements Game {
 		screen = getStartScreen();
 
 		/* 試験的 */
+		float _scaleX = getWindowManager().getDefaultDisplay().getWidth()
+				/ (float) frameBufferWidth;
+		float _scaleY = getWindowManager().getDefaultDisplay().getHeight()
+				/ (float) frameBufferHeight;
+		Log.d("SCALE", "scaleX" + _scaleX + "scaleY" + _scaleY);
+		float density = getResources().getDisplayMetrics().density;
+		/* End */
+
+		/* 試験的 */
 		handler = new Handler();
 		mainLayout = new RelativeLayout(this);
 		mainLayout.addView(renderView);
 		et = new EditText(this);
 		RelativeLayout.LayoutParams param = new RelativeLayout.LayoutParams(
-				WIDTH, HEIGHT);
-		param.setMargins(ET_X, ET_Y, 0, 0);
+				(int)((float)WIDTH*_scaleX), (int)((float)HEIGHT*_scaleY));
+//		param.setMargins((int)((float)ET_X*density+0.5f), (int)((float)ET_Y*density+0.5f), 0, 0);
+		param.setMargins((int)((float)ET_X*_scaleX+0.5f), (int)((float)ET_Y*_scaleY+0.5f), 0, 0);
 		mainLayout.addView(et, param);
 		et.setBackgroundColor(ET_BUCKCOLOR);
 		et.setTextColor(ET_TEXTCOLOR);
