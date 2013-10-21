@@ -120,6 +120,8 @@ public class PlayScreen extends Screen {
 		// ゲーム中のUI(描画系)
 		Graphics g = game.getGraphics();
 		g.drawRect(0, 0, 481, 725, Color.WHITE);
+		world.draw(g);
+		otaku.draw(g);
 		LinkedList sprites = world.getSprites();
 		Iterator iterator = sprites.iterator(); // Iterator=コレクション内の要素を順番に取り出す方法
 		if (world.isFlag() && sprites.size() == 0)
@@ -145,8 +147,6 @@ public class PlayScreen extends Screen {
 			}
 			sprite.draw(g);
 		}
-		otaku.draw(g);
-		world.draw(g);
 		Paint paint = new Paint();
 		paint.setColor(Color.RED);
 		paint.setTextSize(50);

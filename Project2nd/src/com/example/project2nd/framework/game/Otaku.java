@@ -11,7 +11,7 @@ public class Otaku extends Sprite {
 		Abnormality, NONE
 	}
 
-	private static final float TICK_INITIAL = 3.0f;
+	private static final float TICK_INITIAL = 5.0f;
 	private static float tick = TICK_INITIAL; // 更新速度
 	private double vx;
 	private double speed; // 移動速度
