@@ -131,7 +131,7 @@ public class PlayScreen extends Screen {
 				sprites.remove(sprite);
 				break;
 			}
-			if (otaku.isCollision(sprite)) { // 衝突した場合
+			if (otaku.isCollision(sprite)&&!otaku.getflag()) { // 衝突した場合
 				if (sprite instanceof Doujinshi && !otaku.getflag())
 					score += 30;
 				if (sprite instanceof Figure && !otaku.getflag())
