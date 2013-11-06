@@ -23,7 +23,7 @@ public class World {
 	private LinkedList sprites;
 	private ArrayList list;
 	private int list_count = 0;
-	private int item_sun = 40;
+	private int item_sun = 8;
 	private int item_kind = 4;
 	private boolean flag = false;
 

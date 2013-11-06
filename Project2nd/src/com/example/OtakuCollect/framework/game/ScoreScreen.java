@@ -31,8 +31,7 @@ public class ScoreScreen extends Screen {
 			TouchEvent event = touchEvents.get(i);
 			if (event.type == TouchEvent.TOUCH_UP) {
 				if (isBounds(event, 140, 400, 200, 100)) {
-					Utils.addScore(score);
-					Utils.save(game.getFileIO());
+					Utils.addscore(game.getFileIO(), game.getEText(), score);
 					flag = true;
 					return;
 				}
