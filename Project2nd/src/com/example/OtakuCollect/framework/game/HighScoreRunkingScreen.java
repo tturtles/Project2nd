@@ -11,19 +11,14 @@ import com.example.OtakuCollect.framework.Input.TouchEvent;
 
 public class HighScoreRunkingScreen extends Screen {
 
-	String lines[] = new String[5];
 
 	public HighScoreRunkingScreen(Game game) {
 		super(game);
-
-		for (int i = 0; i < 5; i++) {
-			lines[i] = "" + (i + 1) + ". " + Utils.highscores[i];
-		}
+		Utils.readFile(game.getFileIO());
 	}
 
 	@Override
 	public void update(float deltaTime) {
-		Graphics g = game.getGraphics();
 		List<TouchEvent> touchEvents = game.getInput().getTouchEvents();
 		game.getInput().getKeyEvents();
 
@@ -51,11 +46,14 @@ public class HighScoreRunkingScreen extends Screen {
 	@Override
 	public void present(float deltaTime) {
 		Graphics g = game.getGraphics();
+		String[] names = Utils.getNames(game.getFileIO());
+		String[] scores = Utils.getScores(game.getFileIO());
 		g.drawRect(0, 0, 481, 801, Color.WHITE);
 		g.drawPixmap(Assets.bt_title, 270, 680);
 
-		for (int i = 0; i < 5; i++) {
-			g.drawTextAlp(lines[i], 20, (i + 1) * 50, Color.RED, 20);
+		for (int i = 0; i < Utils.getRecode(game.getFileIO()); i++) {
+			g.drawTextAlp(names[i], 20, (i + 1) * 50, Color.RED, 20);
+			g.drawTextAlp(scores[i], 100, (i + 1) * 50, Color.RED, 20);
 		}
 	}
 

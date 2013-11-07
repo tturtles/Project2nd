@@ -10,6 +10,7 @@ import java.io.OutputStream;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.res.AssetManager;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Environment;
 import android.util.Log;
@@ -18,6 +19,9 @@ public class AndroidFileIO implements com.example.OtakuCollect.framework.FileIO 
 	Context con;
 	CreateProductHelper helper = null;
 	SQLiteDatabase db = null;
+	String[] names = new String[5];
+	String[] scores = new String[5];
+	int recode = 0;
 
 	// String externalStoragePath;
 
@@ -46,7 +50,7 @@ public class AndroidFileIO implements com.example.OtakuCollect.framework.FileIO 
 	public void writeFile(ContentValues val) {
 		try {
 			db.beginTransaction();			// トランザクション制御開始
-			db.insert("name", null, val);	// データ登録
+			db.insert("priduct", null, val);	// データ登録
 			db.setTransactionSuccessful();	// コミット
 			db.endTransaction();			// トランザクション制御終了
 			Log.d("データ登録", "成功");
@@ -59,9 +63,31 @@ public class AndroidFileIO implements com.example.OtakuCollect.framework.FileIO 
 	public void readFile() {
 		try {
 			db = helper.getReadableDatabase();
-			String columns[] = {"priductid", "name", "score"};
-			/* ここから記述開始 */
+			String columns[] = {"name", "score"};
+			Cursor cursor = db.query("priduct", columns, null, null, null, null, null);
+			while(recode<5 && cursor.moveToNext()) {
+				names[recode] = cursor.getString(0);
+				scores[recode] = cursor.getString(1);
+				recode++;
+			}
+			Log.d("データ取得", "成功");
+		} catch(Exception e) {
+			Log.d("データ取得", "失敗");
+			Log.d("error", e.toString());
 		}
+		db.close();
+	}
+
+	public String[] getNames() {
+		return names;
+	}
+
+	public String[] getScores() {
+		return scores;
+	}
+	
+	public int getRecode() {
+		return recode;
 	}
 	
 

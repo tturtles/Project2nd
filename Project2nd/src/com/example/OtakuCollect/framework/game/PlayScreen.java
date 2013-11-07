@@ -90,7 +90,7 @@ public class PlayScreen extends Screen {
 			switch (event.type) {
 			case MotionEvent.ACTION_DOWN:
 				game.setScreen(new ScoreScreen(game, score));
-				break;
+				return;
 			}
 		}
 	}

@@ -1,9 +1,5 @@
 package com.example.OtakuCollect.framework;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-
 import android.content.ContentValues;
 
 public interface FileIO {
@@ -18,4 +14,12 @@ public interface FileIO {
 	public void createTable();
 	
 	public void writeFile(ContentValues val);
+	
+	public void readFile();
+	
+	public String[] getNames();
+	
+	public String[] getScores();
+	
+	public int getRecode();
 }

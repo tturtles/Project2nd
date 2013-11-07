@@ -1,17 +1,11 @@
 package com.example.OtakuCollect.framework.game;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-
 import android.content.ContentValues;
-import android.database.sqlite.SQLiteDatabase;
+import android.provider.MediaStore.Files;
+import android.util.Log;
 
 import com.example.OtakuCollect.framework.FileIO;
 import com.example.OtakuCollect.framework.Input.TouchEvent;
-import com.example.OtakuCollect.framework.impl.CreateProductHelper;
 
 public class Utils {
 	public static boolean soundEnabled = true;
@@ -31,6 +25,23 @@ public class Utils {
 		val.put("name", name);
 		val.put("score", score);
 		files.writeFile(val);
+	}
+	
+	public static void readFile(FileIO files) {
+		files.readFile();
+	}
+	
+	public static int getRecode(FileIO files) {
+		Log.d("レコード数", ""+files.getRecode());
+		return files.getRecode();
+	}
+	
+	public static String[] getNames(FileIO files) {
+		return files.getNames();
+	}
+	
+	public static String[] getScores(FileIO files) {
+		return files.getScores();
 	}
 
 	// public static void load(FileIO files) {
