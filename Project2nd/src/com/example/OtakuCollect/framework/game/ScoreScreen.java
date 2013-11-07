@@ -3,6 +3,7 @@ package com.example.OtakuCollect.framework.game;
 import java.util.List;
 
 import android.graphics.Color;
+import android.util.Log;
 
 import com.example.OtakuCollect.framework.Game;
 import com.example.OtakuCollect.framework.Graphics;
@@ -31,8 +32,8 @@ public class ScoreScreen extends Screen {
 			TouchEvent event = touchEvents.get(i);
 			if (event.type == TouchEvent.TOUCH_UP) {
 				if (isBounds(event, 140, 400, 200, 100)) {
-					Utils.addscore(game.getFileIO(), game.getEText(), score);
-					flag = true;
+					Log.d("EText", "'"+game.getEText()+"'");
+					flag = Utils.addscore(game.getFileIO(), game.getEText(), score);
 					return;
 				}
 				if (isBounds(event, 20, 650, 140, 100)) {
@@ -65,7 +66,6 @@ public class ScoreScreen extends Screen {
 		g.drawPixmap(Assets.bt_title, 200, 650);
 		g.drawPixmap(Assets.bt_touroku, 140, 400);
 		g.drawTextAlp("name", 30, 250, Color.RED, 50);
-		// g.drawTextAlp("name", 0, 100, 30, 250, Color.RED, 50);
 		g.drawPixmap(Assets.bt_touroku, 140, 400);
 		if (flag)
 			g.drawTextAlp("登録完了", 110, 470, Color.RED, 70);

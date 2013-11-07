@@ -9,100 +9,24 @@ import com.example.OtakuCollect.framework.Input.TouchEvent;
 
 public class Utils {
 	public static boolean soundEnabled = true;
-	public static int[] highscores = new int[] { 100, 80, 50, 30, 10 };
-
-	public Utils() {
-
-	}
 
 	public static void load(FileIO files) {
-		files.CreateDB();
-		files.createTable();
+		String sql = "create table score_data("+"_id integer primary key autoincrement,"+"name text not null," + "score integer default 0)";
+		files.CreateDBandTable(sql);
 	}
 
-	public static void addscore(FileIO files, String name, int score) {
+	public static boolean addscore(FileIO files, String name, int score) {
+		if(name.toString().equals("")) return false;
 		ContentValues val = new ContentValues();
 		val.put("name", name);
 		val.put("score", score);
-		files.writeFile(val);
+		return files.writeFile(val);
 	}
 	
-	public static void readFile(FileIO files) {
-		files.readFile();
+	public static String[][] readFile(FileIO files) {
+		String[] columns = {"name", "score"};
+		String order =  "score desc";
+		return files.readFile(columns, order, 5);
 	}
 	
-	public static int getRecode(FileIO files) {
-		Log.d("レコード数", ""+files.getRecode());
-		return files.getRecode();
-	}
-	
-	public static String[] getNames(FileIO files) {
-		return files.getNames();
-	}
-	
-	public static String[] getScores(FileIO files) {
-		return files.getScores();
-	}
-
-	// public static void load(FileIO files) {
-	// BufferedReader in = null;
-	// try {
-	// in = new BufferedReader(new InputStreamReader(
-	// files.readFile(".animalrun_savedata")));
-	// soundEnabled = Boolean.parseBoolean(in.readLine());
-	// for (int i = 0; i < 5; i++) {
-	// highscores[i] = Integer.parseInt(in.readLine());
-	// }
-	// } catch (IOException e) {
-	// // デフォルト設定があるのでエラーは無視
-	// } catch (NumberFormatException e) {
-	// // 同上
-	// } finally {
-	// try {
-	// if (in != null)
-	// in.close();
-	// } catch (IOException e) {
-	// }
-	// }
-	// }
-
-	// public static void save(FileIO files) {
-	// BufferedWriter out = null;
-	// try {
-	// out = new BufferedWriter(new OutputStreamWriter(
-	// files.writeFile(".animalrun_savedata")));
-	// out.write(Boolean.toString(soundEnabled));
-	// for (int i = 0; i < 5; i++) {
-	// out.write(Integer.toString(highscores[i]));
-	// }
-	// } catch (IOException e) {
-	// } finally {
-	// try {
-	// if (out != null)
-	// out.close();
-	// } catch (IOException e) {
-	// }
-	// }
-	// }
-	//
-	// public static void addScore(int score) {
-	// for (int i = 0; i < 5; i++) {
-	// if (highscores[i] < score) {
-	// for (int j = 4; j > i; j--)
-	// highscores[j] = highscores[j - 1];
-	// highscores[i] = score;
-	// break;
-	// }
-	// }
-	// }
-
-	public boolean isBounds(TouchEvent event, int x, int y, int width,
-			int height) {
-		if (event.x > x && event.x < x + width - 1 && event.y > y
-				&& event.y < y + height - 1)
-			return true;
-		else
-			return false;
-	}
-
 }

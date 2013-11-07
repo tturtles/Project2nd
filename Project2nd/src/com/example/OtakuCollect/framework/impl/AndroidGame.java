@@ -171,8 +171,7 @@ public abstract class AndroidGame extends Activity implements Game {
 	}
 
 	public String getEText() {
-		SpannableStringBuilder sb = (SpannableStringBuilder) et.getText();
-		return sb.toString();
+		return et.getText().toString();
 	}
 
 	/* End */

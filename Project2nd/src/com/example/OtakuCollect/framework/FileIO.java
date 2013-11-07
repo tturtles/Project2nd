@@ -3,23 +3,11 @@ package com.example.OtakuCollect.framework;
 import android.content.ContentValues;
 
 public interface FileIO {
-	// public InputStream readAsset(String fileName) throws IOException;
-	//
-	// public InputStream readFile(String fileName) throws IOException;
-	//
-	// public OutputStream writeFile(String fileName) throws IOException;
 
-	public void CreateDB();
+	public boolean CreateDBandTable(String sql);
 	
-	public void createTable();
+	public boolean writeFile(ContentValues val);
 	
-	public void writeFile(ContentValues val);
+	public String[][] readFile(String[] columns, String older,int quantity);
 	
-	public void readFile();
-	
-	public String[] getNames();
-	
-	public String[] getScores();
-	
-	public int getRecode();
 }

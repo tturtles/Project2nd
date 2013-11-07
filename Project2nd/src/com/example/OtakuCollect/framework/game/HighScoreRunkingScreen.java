@@ -3,6 +3,7 @@ package com.example.OtakuCollect.framework.game;
 import java.util.List;
 
 import android.graphics.Color;
+import android.util.Log;
 
 import com.example.OtakuCollect.framework.Game;
 import com.example.OtakuCollect.framework.Graphics;
@@ -10,11 +11,11 @@ import com.example.OtakuCollect.framework.Screen;
 import com.example.OtakuCollect.framework.Input.TouchEvent;
 
 public class HighScoreRunkingScreen extends Screen {
-
+	private String[][] list;
 
 	public HighScoreRunkingScreen(Game game) {
 		super(game);
-		Utils.readFile(game.getFileIO());
+		list = Utils.readFile(game.getFileIO());
 	}
 
 	@Override
@@ -34,6 +35,23 @@ public class HighScoreRunkingScreen extends Screen {
 		}
 	}
 
+	@Override
+	public void present(float deltaTime) {
+		Graphics g = game.getGraphics();
+		g.drawRect(0, 0, 481, 801, Color.WHITE);
+		g.drawPixmap(Assets.bt_title, 270, 680);
+		if (list == null) {
+			g.drawTextAlp("登録スコアがありません", 10, 100, Color.RED, 40);
+		} else {
+			for (int i = 0; i < list.length; i++) {
+				for (int j = 0; j < list[0].length && list[i][j] != null; j++) {
+					g.drawTextAlp(list[i][j], 20 + j * 150, (i + 1) * 100,
+							Color.RED, 40);
+				}
+			}
+		}
+	}
+
 	private boolean isBounds(TouchEvent event, int x, int y, int width,
 			int height) {
 		if (event.x > x && event.x < x + width - 1 && event.y > y
@@ -41,20 +59,6 @@ public class HighScoreRunkingScreen extends Screen {
 			return true;
 		else
 			return false;
-	}
-
-	@Override
-	public void present(float deltaTime) {
-		Graphics g = game.getGraphics();
-		String[] names = Utils.getNames(game.getFileIO());
-		String[] scores = Utils.getScores(game.getFileIO());
-		g.drawRect(0, 0, 481, 801, Color.WHITE);
-		g.drawPixmap(Assets.bt_title, 270, 680);
-
-		for (int i = 0; i < Utils.getRecode(game.getFileIO()); i++) {
-			g.drawTextAlp(names[i], 20, (i + 1) * 50, Color.RED, 20);
-			g.drawTextAlp(scores[i], 100, (i + 1) * 50, Color.RED, 20);
-		}
 	}
 
 	@Override
