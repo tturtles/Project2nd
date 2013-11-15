@@ -146,8 +146,14 @@ public class PlayScreen extends Screen {
 				sprites.remove(sprite);
 				break;
 			}
+		}
+		
+		iterator = sprites.iterator();
+		while (iterator.hasNext()) {
+			Sprite sprite = (Sprite) iterator.next();
 			sprite.draw(g);
 		}
+		
 		Paint paint = new Paint();
 		paint.setColor(Color.RED);
 		paint.setTextSize(50);
