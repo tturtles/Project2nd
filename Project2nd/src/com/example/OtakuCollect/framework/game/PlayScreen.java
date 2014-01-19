@@ -28,7 +28,7 @@ public class PlayScreen extends Screen {
 	public PlayScreen(Game game) {
 		super(game);
 		world = new World();
-		otaku = new Otaku(215, 660);
+		otaku = new Otaku(215, 600);
 	}
 
 	@Override

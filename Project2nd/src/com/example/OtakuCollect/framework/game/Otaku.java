@@ -23,8 +23,8 @@ public class Otaku extends Sprite {
 		this.image = Assets.image_otaku;
 		this.x = x;
 		this.y = y;
-		width = 50;
-		height = 60;
+		width = 100;
+		height = 100;
 		speed = 10;
 		status = Status.NONE;
 		vx = 0;
