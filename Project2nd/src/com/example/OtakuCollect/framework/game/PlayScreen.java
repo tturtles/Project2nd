@@ -6,6 +6,7 @@ import java.util.List;
 
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.view.MotionEvent;
 
 import com.example.OtakuCollect.framework.Game;
@@ -120,7 +121,9 @@ public class PlayScreen extends Screen {
 	private void drawRunningUI() {
 		// ゲーム中のUI(描画系)
 		Graphics g = game.getGraphics();
-		g.drawRect(0, 0, 481, 725, Color.WHITE);
+		Rect src = new Rect(0, 0, 480, 800);
+		Rect dst = new Rect(0, 0, 480, 725);
+		g.drawPixmap(Assets.image_play_buck, src, dst);
 		world.draw(g);
 		otaku.draw(g);
 		LinkedList sprites = world.getSprites();

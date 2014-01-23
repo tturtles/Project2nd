@@ -2,6 +2,7 @@ package com.example.OtakuCollect.framework;
 
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.widget.FrameLayout;
 
 public interface Graphics {
@@ -37,5 +38,7 @@ public interface Graphics {
     public void drawTextAlp(String line, float x, float y, Paint paint);
 
     public void drawTextAlp(String line, float x, float y, int color, float size);
+    
+    public void drawPixmap(Pixmap pixmap, Rect src, Rect dst);
     
 }

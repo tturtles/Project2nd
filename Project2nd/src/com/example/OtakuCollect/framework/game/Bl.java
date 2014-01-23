@@ -16,8 +16,8 @@ public class Bl extends Sprite {
 
 	public Bl() {
 		this.image = Assets.image_bl;
-		width = 50;
-		height = 50;
+		width = 70;
+		height = 70;
 		Random rand = new Random();
 		this.x = rand.nextInt(480-width);
 		this.y = -height;

@@ -21,4 +21,7 @@ public class Assets {
 	public static Pixmap image_tapestry;
 	public static Pixmap image_bl;
 	public static Pixmap image_start_buck;
+	public static Pixmap image_play_buck;
+	public static Pixmap logo_title;
+	
 }

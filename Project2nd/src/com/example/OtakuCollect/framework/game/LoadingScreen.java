@@ -30,7 +30,9 @@ public class LoadingScreen extends Screen {
 		Assets.image_figure = g.newPixmap("image_figure.png", PixmapFormat.ARGB4444);
 		Assets.image_tapestry = g.newPixmap("image_tapestry.png", PixmapFormat.ARGB4444);
 		Assets.image_start_buck = g.newPixmap("image_start_buck.png", PixmapFormat.ARGB4444);
+		Assets.image_play_buck = g.newPixmap("image_play_buck.png", PixmapFormat.ARGB4444);
 		Assets.image_bl = g.newPixmap("image_bl.png", PixmapFormat.ARGB4444);
+		Assets.logo_title = g.newPixmap("logo_title.png", PixmapFormat.ARGB4444);
 		Utils.load(game.getFileIO());
 		game.setScreen(new StartScreen(game));
 	}
