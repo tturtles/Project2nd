@@ -42,7 +42,7 @@ public class World {
 			list.add(new Bl());
 		}
 		Collections.shuffle(list);
-		sprites.add(list.get(list_count++));
+//		sprites.add(list.get(list_count++));
 	}
 
 	public void update(float deltaTime) {

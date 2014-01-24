@@ -112,7 +112,7 @@ public class PlayScreen extends Screen {
 		Paint paint = new Paint();
 		paint.setColor(Color.RED);
 		paint.setTextSize(100);
-		g.drawRect(0, 0, 481, 802, Color.BLACK);
+		drawRunningUI();
 		g.drawTextAlp("Ready?", 70, 300, paint);
 		paint.setTextSize(30);
 		g.drawTextAlp("Tap on Start", 150, 500, paint);
