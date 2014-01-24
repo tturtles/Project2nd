@@ -60,15 +60,15 @@ public class ScoreScreen extends Screen {
 	public void present(float deltaTime) {
 		Graphics g = game.getGraphics();
 		g.drawRect(0, 0, 481, 801, Color.WHITE);
-		g.drawTextAlp("スコア", 30, 100, Color.RED, 50);
-		g.drawTextAlp("" + this.score, 200, 200, Color.BLACK, 100);
+//		g.drawTextAlp("スコア", 30, 100, Color.RED, 50);
+		g.drawPixmap(Assets.logo_score, 30, 50);
+		g.drawTextAlp("" + this.score, 200, 300, Color.BLACK, 100);
 		g.drawPixmap(Assets.bt_retry, 20, 650);
 		g.drawPixmap(Assets.bt_title, 200, 650);
-		g.drawPixmap(Assets.bt_touroku, 140, 400);
-		g.drawTextAlp("name", 30, 250, Color.RED, 50);
-		g.drawPixmap(Assets.bt_touroku, 140, 400);
+		g.drawTextAlp("name", 30, 350, Color.RED, 50);
+		g.drawPixmap(Assets.bt_touroku, 140, 500);
 		if (flag)
-			g.drawTextAlp("登録完了", 110, 470, Color.RED, 70);
+			g.drawTextAlp("登録完了", 110, 570, Color.RED, 70);
 		game.chengeEditText(true);
 	}
 

@@ -23,5 +23,7 @@ public class Assets {
 	public static Pixmap image_start_buck;
 	public static Pixmap image_play_buck;
 	public static Pixmap logo_title;
-	
+	public static Pixmap logo_score;
+	public static Pixmap logo_ready;
+	public static Pixmap logo_gameover;
 }

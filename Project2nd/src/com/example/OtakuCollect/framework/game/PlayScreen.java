@@ -113,7 +113,7 @@ public class PlayScreen extends Screen {
 		paint.setColor(Color.RED);
 		paint.setTextSize(100);
 		drawRunningUI();
-		g.drawTextAlp("Ready?", 70, 300, paint);
+		g.drawPixmap(Assets.logo_ready, 30, 200);
 		paint.setTextSize(30);
 		g.drawTextAlp("Tap on Start", 150, 500, paint);
 	}
@@ -183,7 +183,7 @@ public class PlayScreen extends Screen {
 		Paint paint = new Paint();
 		paint.setColor(Color.RED);
 		paint.setTextSize(100);
-		g.drawTextAlp("GameOver", 0, 300, paint);
+		g.drawPixmap(Assets.logo_gameover, 30, 200);
 	}
 
 	// タップ時の当たり判定 目標がタップされた場合true、違う場合false

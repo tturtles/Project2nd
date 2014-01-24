@@ -15,7 +15,6 @@ public class LoadingScreen extends Screen {
 	@Override
 	public void update(float deltaTime) {
 		Graphics g = game.getGraphics();
-//		Assets.title = g.newPixmap("title.png", PixmapFormat.ARGB4444);
 		Assets.bt_play = g.newPixmap("bt_play.png", PixmapFormat.ARGB4444);
 		Assets.bt_score = g.newPixmap("bt_score.png", PixmapFormat.ARGB4444);
 		Assets.bt_close = g.newPixmap("bt_close.png", PixmapFormat.ARGB4444);
@@ -33,6 +32,9 @@ public class LoadingScreen extends Screen {
 		Assets.image_play_buck = g.newPixmap("image_play_buck.png", PixmapFormat.ARGB4444);
 		Assets.image_bl = g.newPixmap("image_bl.png", PixmapFormat.ARGB4444);
 		Assets.logo_title = g.newPixmap("logo_title.png", PixmapFormat.ARGB4444);
+		Assets.logo_gameover = g.newPixmap("logo_gameover.png", PixmapFormat.ARGB4444);
+		Assets.logo_ready = g.newPixmap("logo_ready.png", PixmapFormat.ARGB4444);
+		Assets.logo_score = g.newPixmap("logo_score.png", PixmapFormat.ARGB4444);
 		Utils.load(game.getFileIO());
 		game.setScreen(new StartScreen(game));
 	}
