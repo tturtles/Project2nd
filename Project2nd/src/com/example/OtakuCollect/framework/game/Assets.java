@@ -26,4 +26,6 @@ public class Assets {
 	public static Pixmap logo_score;
 	public static Pixmap logo_ready;
 	public static Pixmap logo_gameover;
+	
+	public static Pixmap image_ScoreScreen;
 }

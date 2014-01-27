@@ -24,7 +24,7 @@ public class PlayScreen extends Screen {
 
 	private World world;
 	private Otaku otaku;
-	private int score = 0;
+	private int score = 1000;
 
 	public PlayScreen(Game game) {
 		super(game);
