@@ -28,4 +28,5 @@ public class Assets {
 	public static Pixmap logo_gameover;
 	
 	public static Pixmap image_ScoreScreen;
+	public static Pixmap image_RunkingScreen;
 }

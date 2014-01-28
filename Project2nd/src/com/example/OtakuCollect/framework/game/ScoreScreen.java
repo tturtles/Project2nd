@@ -61,14 +61,13 @@ public class ScoreScreen extends Screen {
 	public void present(float deltaTime) {
 		Graphics g = game.getGraphics();
 		g.drawPixmap(Assets.image_ScoreScreen, 0, 0);
-//		Log.d("score", ""+score);
+		g.drawPixmap(Assets.bt_retry, 0, 700);
+		g.drawPixmap(Assets.bt_title, 280, 700);
 		int count = 0;
 		for (int _score = score; _score > 10; count++) {
 			_score = _score / 10;
 		}
 		int score_x = 90 - 40 * count;
-		Log.d("count" + count, "x" + score_x);
-
 		g.drawTextAlp("" + this.score, score_x, 370, Color.BLACK, 150);
 		if (flag)
 			g.drawTextAlp("登録完了", 110, 570, Color.RED, 70);

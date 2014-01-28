@@ -38,14 +38,16 @@ public class HighScoreRunkingScreen extends Screen {
 	public void present(float deltaTime) {
 		Graphics g = game.getGraphics();
 		g.drawRect(0, 0, 481, 801, Color.WHITE);
-		g.drawPixmap(Assets.bt_title, 270, 680);
+		g.drawPixmap(Assets.image_play_buck, 0, 0);
+		g.drawPixmap(Assets.image_RunkingScreen, 0, 0);
+		g.drawPixmap(Assets.bt_title, 280, 700);
 		if (list == null) {
-			g.drawTextAlp("登録スコアがありません", 10, 100, Color.RED, 40);
+			g.drawTextAlp("登録スコアがありません", 100, 250, Color.RED, 60);
 		} else {
 			for (int i = 0; i < list.length; i++) {
 				for (int j = 0; j < list[0].length && list[i][j] != null; j++) {
-					g.drawTextAlp(list[i][j], 20 + j * 200, (i + 1) * 100,
-							Color.RED, 40);
+					g.drawTextAlp(list[i][j], 150 + j * 190, (i + 1) * 230,
+							Color.RED, 60);
 				}
 			}
 		}
