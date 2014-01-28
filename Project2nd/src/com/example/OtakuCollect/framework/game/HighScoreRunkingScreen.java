@@ -22,7 +22,6 @@ public class HighScoreRunkingScreen extends Screen {
 	public void update(float deltaTime) {
 		List<TouchEvent> touchEvents = game.getInput().getTouchEvents();
 		game.getInput().getKeyEvents();
-
 		int len = touchEvents.size();
 		for (int i = 0; i < len; i++) {
 			TouchEvent event = touchEvents.get(i);
@@ -45,7 +44,7 @@ public class HighScoreRunkingScreen extends Screen {
 		} else {
 			for (int i = 0; i < list.length; i++) {
 				for (int j = 0; j < list[0].length && list[i][j] != null; j++) {
-					g.drawTextAlp(list[i][j], 20 + j * 150, (i + 1) * 100,
+					g.drawTextAlp(list[i][j], 20 + j * 200, (i + 1) * 100,
 							Color.RED, 40);
 				}
 			}

@@ -23,7 +23,7 @@ public class World {
 	private LinkedList sprites;
 	private ArrayList list;
 	private int list_count = 0;
-	private int item_sun = 4;
+	private int item_sun = 40;
 	private int item_kind = 4;
 	private boolean flag = false;
 
@@ -66,7 +66,7 @@ public class World {
 		Paint paint = new Paint();
 		paint.setTextSize(20);
 		paint.setColor(Color.BLACK);
-		g.drawTextAlp("count : " + list_count, 0, 30, paint); // 試験的
+//		g.drawTextAlp("count : " + list_count, 0, 30, paint); // 試験的
 	}
 
 	public int getItem_sun() {
