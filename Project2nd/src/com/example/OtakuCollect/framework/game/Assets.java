@@ -14,6 +14,7 @@ public class Assets {
 	public static Pixmap bt_right;
 	public static Pixmap bt_left;
 	public static Pixmap bt_touroku;
+	public static Pixmap bt_kanryou;
 	public static Pixmap image_otaku;
 	public static Pixmap image_nototaku;
 	public static Pixmap image_doujinshi;

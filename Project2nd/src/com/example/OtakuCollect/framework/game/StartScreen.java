@@ -26,7 +26,7 @@ public class StartScreen extends Screen {
 		for (int i = 0; i < len; i++) {
 			TouchEvent event = touchEvents.get(i);
 			if (event.type == TouchEvent.TOUCH_UP) {
-				if (isBounds(event, 80, 400, 320, 100)) {
+				if (isBounds(event, 80, 400, 320, 150)) {
 					game.setScreen(new PlayScreen(game));
 				} else if(isBounds(event, 80, 600, 320, 150)) {
 					game.setScreen(new HighScoreRunkingScreen(game));
