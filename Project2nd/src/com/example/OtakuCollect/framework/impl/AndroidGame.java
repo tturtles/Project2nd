@@ -18,6 +18,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
+import android.text.InputFilter;
 import android.text.InputType;
 import android.text.SpannableStringBuilder;
 import android.util.Log;
@@ -87,6 +88,9 @@ public abstract class AndroidGame extends Activity implements Game {
 		RelativeLayout.LayoutParams param = new RelativeLayout.LayoutParams(
 				(int)((float)WIDTH*_scaleX), (int)((float)HEIGHT*_scaleY));
 //		param.setMargins((int)((float)ET_X*density+0.5f), (int)((float)ET_Y*density+0.5f), 0, 0);
+		InputFilter[] inputFilter = new InputFilter[1];
+		inputFilter[0] = new InputFilter.LengthFilter(5);	// EditTextの文字数制限
+		et.setFilters(inputFilter);
 		param.setMargins((int)((float)ET_X*_scaleX+0.5f), (int)((float)ET_Y*_scaleY+0.5f), 0, 0);
 		mainLayout.addView(et, param);
 		et.setBackgroundColor(ET_BUCKCOLOR);

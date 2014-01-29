@@ -42,11 +42,11 @@ public class HighScoreRunkingScreen extends Screen {
 		g.drawPixmap(Assets.image_RunkingScreen, 0, 0);
 		g.drawPixmap(Assets.bt_title, 280, 700);
 		if (list == null) {
-			g.drawTextAlp("登録スコアがありません", 100, 250, Color.RED, 60);
+//			g.drawTextAlp("登録スコアがありません", 100, 250, Color.RED, 60);
 		} else {
 			for (int i = 0; i < list.length; i++) {
 				for (int j = 0; j < list[0].length && list[i][j] != null; j++) {
-					g.drawTextAlp(list[i][j], 150 + j * 190, (i + 1) * 230,
+					g.drawTextAlp(list[i][j], 150 + j * 190, (i * 110)+230,
 							Color.RED, 60);
 				}
 			}
