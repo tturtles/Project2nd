@@ -27,6 +27,7 @@ public class HighScoreRunkingScreen extends Screen {
 			TouchEvent event = touchEvents.get(i);
 			if (event.type == TouchEvent.TOUCH_UP) {
 				if (isBounds(event, 270, 680, 200, 100)) {
+					Assets.bgm_select.play(1);
 					game.setScreen(new StartScreen(game));
 					return;
 				}

@@ -1,6 +1,8 @@
 package com.example.OtakuCollect.framework.game;
 
+import com.example.OtakuCollect.framework.Music;
 import com.example.OtakuCollect.framework.Pixmap;
+import com.example.OtakuCollect.framework.Sound;
 
 
 public class Assets {
@@ -30,4 +32,10 @@ public class Assets {
 	
 	public static Pixmap image_ScoreScreen;
 	public static Pixmap image_RunkingScreen;
+	
+	public static Music bgm_playscreen;
+	public static Sound bgm_select;
+	public static Sound bgm_bl;
+	public static Sound bgm_item;
+
 }

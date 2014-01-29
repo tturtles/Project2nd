@@ -35,13 +35,16 @@ public class ScoreScreen extends Screen {
 					Log.d("EText", "'" + game.getEText() + "'");
 					flag = Utils.addscore(game.getFileIO(), game.getEText(),
 							score);
+					Assets.bgm_select.play(1);
 					return;
 				}
 				if (isBounds(event, 0, 700, 200, 100)) {
 					game.chengeEditText(false);
+					Assets.bgm_select.play(1);
 					game.setScreen(new PlayScreen(game));
 				}
 				if (isBounds(event, 280, 700, 200, 100)) {
+					Assets.bgm_select.play(1);
 					game.setScreen(new StartScreen(game));
 				}
 			}

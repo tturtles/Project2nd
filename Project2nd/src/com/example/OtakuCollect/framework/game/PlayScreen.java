@@ -30,6 +30,7 @@ public class PlayScreen extends Screen {
 		super(game);
 		world = new World();
 		otaku = new Otaku(215, 600);
+		Assets.bgm_playscreen.play();
 	}
 
 	@Override
@@ -144,19 +145,22 @@ public class PlayScreen extends Screen {
 					score += 50;
 				if (sprite instanceof Tapestry && !otaku.getflag())
 					score += 70;
-				if (sprite instanceof Bl && !otaku.getflag())
+				if (sprite instanceof Bl && !otaku.getflag()) {
 					otaku.setFlag();
+					Assets.bgm_bl.play(1);
+				} else
+					Assets.bgm_item.play(1);
 				sprites.remove(sprite);
 				break;
 			}
 		}
-		
+
 		iterator = sprites.iterator();
 		while (iterator.hasNext()) {
 			Sprite sprite = (Sprite) iterator.next();
 			sprite.draw(g);
 		}
-		
+
 		Paint paint = new Paint();
 		paint.setColor(Color.RED);
 		paint.setTextSize(50);
@@ -206,6 +210,9 @@ public class PlayScreen extends Screen {
 
 	@Override
 	public void dispose() {
+		Assets.bgm_playscreen.stop();
+		Assets.bgm_item.dispose();
+		Assets.bgm_bl.dispose();
 	}
 
 }
